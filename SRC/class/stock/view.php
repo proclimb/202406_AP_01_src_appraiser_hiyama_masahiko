@@ -265,9 +265,16 @@ function subStockEditView($param)
 				<th>ランク</th>
 				<td>
 					<?php
+					if (!$param["stockNo"]) {
+						$param["rank"] = 1;
+					}
 					for ($i = 0; $i < 5; $i++) {
+						$check = '';
+						if (($param["rank"] - 1) == $i) {
+							$check = 'checked = "checked"';
+						}
 					?>
-						<input type="radio" name="rank" value="<?php print $i + 1; ?>" <?php if ($param["rank"] == $i) print ' checked="checked"'; ?> /> <?php print fnRankName($i); ?>
+						<input type="radio" name="rank" value="<?php print $i + 1; ?>" <?php print $check; ?> /> <?php print fnRankName($i); ?>
 					<?php
 					}
 					?>
@@ -297,9 +304,16 @@ function subStockEditView($param)
 				<th>距離</th>
 				<td>
 					<?php
+					if (!$param["stockNo"]) {
+						$param["distance"] = 1;
+					}
 					for ($i = 0; $i < 4; $i++) {
+						$check = '';
+						if (($param["distance"] - 1) == $i) {
+							$check = 'checked = "checked"';
+						}
 					?>
-						<input type="radio" name="distance" value="<?php print $i + 1; ?>" <?php if ($param["distance"] == $i) print ' checked="checked"'; ?> /> <?php print fnDistanceName($i); ?>
+						<input type="radio" name="distance" value="<?php print $i + 1; ?>" <?php print $check; ?> /> <?php print fnDistanceName($i); ?>
 					<?php
 					}
 					?>
@@ -337,10 +351,19 @@ function subStockEditView($param)
 				<th>仕入経緯</th>
 				<td>
 					<?php
+
+
+					if (!$param["stockNo"]) {
+						$param["how"] = 1;
+					}
 					for ($i = 0; $i < 6; $i++) {
+						$check = '';
+						if (($param["how"] - 1) == $i) {
+							$check = 'checked = "checked"';
+						}
 					?>
 						<br />
-						<input type="radio" name="how" value="<?php print $i + 1; ?>" <?php if ($param["how"] == $i) print ' checked="checked"'; ?> /> <?php print fnHowName($i); ?>
+						<input type="radio" name="how" value="<?php print $i + 1; ?>" <?php print $check; ?> /> <?php print fnHowName($i); ?>
 					<?php
 					}
 					?>
