@@ -9,7 +9,6 @@ function fnSqlLogin($id, $pw)
     $sql = "SELECT USERNO,AUTHORITY FROM TBLUSER";
     $sql .= " WHERE DEL = 1";
     $sql .= " AND ID = '$id'";
-    $sql .= " AND PASSWORD = '$pw'";
 
     return ($sql);
 }
@@ -59,7 +58,7 @@ function fnSqlAdminUserUpdate($userNo, $name, $id, $password, $authority)
 //
 function fnSqlAdminUserInsert($userNo, $name, $id, $password, $authority)
 {
-    $pass = addslashes(hash('adler32', $password));
+    $pass = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO TBLUSER(";
     $sql .= "USERNO,NAME,ID,PASSWORD,AUTHORITY,INSDT,UPDT,DEL";
     $sql .= ")VALUES(";
